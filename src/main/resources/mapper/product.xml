@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.product.springboot.repository.ProductRepository">
+
+	<select id="findAll" resultType="com.product.springboot.model.Product">
+		select * from product order by id desc
+	</select>
+	
+	<select id="findBy1" resultType="com.product.springboot.model.Product">
+		select * from product where type = #{type}
+	</select>
+	
+	<select id="findBy2" resultType="com.product.springboot.model.Product">
+		select * from product where type = #{type}
+	</select>
+	
+	<select id="findByPrice" resultType="com.product.springboot.model.Product">
+		select * from product order by price desc
+	</select>
+	
+	<select id="findByOrder" resultType="com.product.springboot.model.Product">
+		select * from product order by orderCount desc
+	</select>
+	
+	
+	
+</mapper>
