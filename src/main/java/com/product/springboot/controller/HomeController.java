@@ -37,7 +37,7 @@ public class HomeController {
 	@GetMapping("/life")
 	public @ResponseBody List<Product> life_list() {
 		
-		List<Product> products = prorep.findBy1("life");
+		List<Product> products = prorep.findBy1("주방");
 		
 		return products;
 	}
@@ -45,7 +45,7 @@ public class HomeController {
 	@GetMapping("/food")
 	public @ResponseBody List<Product> food_list() {
 		
-		List<Product> products = prorep.findBy1("food");
+		List<Product> products = prorep.findBy1("음식");
 		
 		return products;
 	}
@@ -60,6 +60,40 @@ public class HomeController {
 	public @ResponseBody List<Product> price_list() {
 		
 		List<Product> products = prorep.findByPrice();
+		
+		return products;
+	}
+	
+	@GetMapping("/life_price")
+	public @ResponseBody List<Product> life_price_list() {
+		
+		List<Product> products = prorep.findBy1Price();
+		
+		return products;
+	}
+	
+	@GetMapping("/life_order")
+	public @ResponseBody List<Product> life_order_list() {
+		
+		List<Product> products = prorep.findBy1Order();
+		
+		return products;
+	}
+	
+
+	@GetMapping("/food_price")
+	public @ResponseBody List<Product> food_price_list() {
+		
+		List<Product> products = prorep.findBy2Price();
+		
+		return products;
+	}
+	
+
+	@GetMapping("/food_order")
+	public @ResponseBody List<Product> food_order_list() {
+		
+		List<Product> products = prorep.findBy2Order();
 		
 		return products;
 	}

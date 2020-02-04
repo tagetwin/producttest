@@ -24,20 +24,6 @@
 		select * from product order by orderCount desc
 	</select>
 	
-	<select id="findBy1Price" resultType="com.product.springboot.model.Product">
-		select * from product where type = '주방' order by price desc
-	</select>
 	
-	<select id="findBy1Order" resultType="com.product.springboot.model.Product">
-		select * from product where type = '주방' order by orderCount desc
-	</select>
-	
-	<select id="findBy2Price" resultType="com.product.springboot.model.Product">
-		select * from product where type = '음식' order by price desc
-	</select>
-	
-	<select id="findBy2Order" resultType="com.product.springboot.model.Product">
-		select * from product where type = '음식' order by orderCount desc
-	</select>
 	
 </mapper>

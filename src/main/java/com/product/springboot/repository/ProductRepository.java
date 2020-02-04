@@ -20,4 +20,16 @@ public interface ProductRepository {
 		
 		// 주문순
 		List<Product> findByOrder();
+		
+		// 주방 + 가격
+		List<Product> findBy1Price();
+		
+		// 주방 + 주문
+		List<Product> findBy1Order();
+		
+		// 음식 + 가격
+		List<Product> findBy2Price();
+
+		// 음식 + 주문
+		List<Product> findBy2Order();
 }
