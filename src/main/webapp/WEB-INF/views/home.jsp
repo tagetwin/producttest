@@ -14,56 +14,50 @@
 	<button id="order-btn">주문순</button>
 
 	<table border="1" id="table">
-		<tr id="title">
-			<th>#</th>
-			<th>Name</th>
-			<th>Price</th>
-			<th>orderCount</th>
-			<th>type</th>
-		</tr>
-
-		<c:forEach var="products" items="${products}" varStatus="status">
-
-			<tr id="items">
-				<td class="item">${products.id}</td>
-				<td class="item">${products.name}</td>
-				<td class="item">${products.price}</td>
-				<td class="item">${products.orderCount}</td>
-				<td class="item">${products.type}</td>
+		<thead>
+			<tr id="title">
+				<td>#</td>
+				<td>Name</td>
+				<td>Price</td>
+				<td>orderCount</td>
+				<td>type</td>
 			</tr>
+		</thead>
+		<tbody id="tbody">
+			<c:forEach var="products" items="${products}" varStatus="status">
 
-		</c:forEach>
+				<tr id="items">
+					<td class="item">${products.id}</td>
+					<td class="item">${products.name}</td>
+					<td class="item">${products.price}</td>
+					<td class="item">${products.orderCount}</td>
+					<td class="item">${products.type}</td>
+				</tr>
+
+			</c:forEach>
+		</tbody>
 	</table>
 	<h3 id="lifefood"></h3>
 	<h3 id="priceorder"></h3>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script>
-	
 		var option = 0;
-
-		function reUseTable() {
-			$("#table").empty();
-			$('#table').append("<tr>");
-			$('#table').append("<th>#</th>");
-			$('#table').append("<th>Name</th>");
-			$('#table').append("<th>Price</th>");
-			$('#table').append("<th>orderCount</th>");
-			$('#table').append("<th>type</th>");
-			$('#table').append("</tr>");
-		}
 
 		function makeTable(result) {
 
-			for (i = 0; i < result.length; i++) {
+			for (key in result) {
 
-				$('#table').append("<tr id='items'>");
-				$("#table").append("<td class='item'>" + result[i].id + "</td>");
-				$("#table").append("<td class='item'>" + result[i].name + "</td>");
-				$("#table").append("<td class='item'>" + result[i].price + "</td>");
-				$("#table").append("<td class='item'>" + result[i].orderCount + "</td>");
-				$("#table").append("<td class='item'>" + result[i].type + "</td>");
-				$('#table').append('</tr>');
+				var res = '';
+				res += "<tr>";
+				res += "<td>" + result[key].id + "</td>";
+				res += "<td>" + result[key].name + "</td>";
+				res += "<td>" + result[key].price + "</td>";
+				res += "<td>" + result[key].orderCount + "</td>";
+				res += "<td>" + result[key].type + "</td>";
+				res += "</tr>";
+
+				$('tbody').append(res);
 
 			}
 		}
@@ -72,11 +66,9 @@
 		$('#all-btn').on('click', function() {
 
 			option = 0;
-			
+
 			$("#lifefood").text("");
 			$("#priceorder").text("");
-
-			reUseTable();
 
 			$.ajax({
 				type : 'GET',
@@ -84,7 +76,7 @@
 				dataType : 'json'
 
 			}).done(function(result) {
-
+				$("#tbody").empty();
 				makeTable(result);
 
 			}).fail(function() {
@@ -97,11 +89,9 @@
 		$('#life-btn').on('click', function() {
 
 			option = 1;
-			
+
 			$("#lifefood").text("주방");
 			$("#priceorder").text("");
-
-			reUseTable();
 
 			$.ajax({
 				type : 'GET',
@@ -109,7 +99,7 @@
 				dataType : 'json'
 
 			}).done(function(result) {
-
+				$("#tbody").empty();
 				makeTable(result);
 
 			}).fail(function() {
@@ -122,11 +112,9 @@
 		$('#food-btn').on('click', function() {
 
 			option = 2;
-			
+
 			$("#lifefood").text("음식");
 			$("#priceorder").text("");
-
-			reUseTable();
 
 			$.ajax({
 				type : 'GET',
@@ -134,7 +122,7 @@
 				dataType : 'json'
 
 			}).done(function(result) {
-
+				$("#tbody").empty();
 				makeTable(result);
 
 			}).fail(function() {
@@ -147,8 +135,6 @@
 		$('#price-btn').on('click', function() {
 			$("#priceorder").text("가격");
 
-			reUseTable();
-
 			// 가격 + 주방
 			if (option == 1) {
 
@@ -158,7 +144,7 @@
 					dataType : 'json'
 
 				}).done(function(result) {
-
+					$("#tbody").empty();
 					makeTable(result);
 
 				}).fail(function() {
@@ -173,7 +159,7 @@
 					dataType : 'json'
 
 				}).done(function(result) {
-
+					$("#tbody").empty();
 					makeTable(result);
 
 				}).fail(function() {
@@ -187,7 +173,7 @@
 					dataType : 'json'
 
 				}).done(function(result) {
-
+					$("#tbody").empty();
 					makeTable(result);
 
 				}).fail(function() {
@@ -200,8 +186,6 @@
 		$('#order-btn').on('click', function() {
 			$("#priceorder").text("주문");
 
-			reUseTable();
-
 			// 주방+주문
 			if (option == 1) {
 				$.ajax({
@@ -210,7 +194,7 @@
 					dataType : 'json'
 
 				}).done(function(result) {
-
+					$("#tbody").empty();
 					makeTable(result);
 
 				}).fail(function() {
@@ -226,7 +210,7 @@
 					dataType : 'json'
 
 				}).done(function(result) {
-
+					$("#tbody").empty();
 					makeTable(result);
 
 				}).fail(function() {
@@ -240,7 +224,7 @@
 					dataType : 'json'
 
 				}).done(function(result) {
-
+					$("#tbody").empty();
 					makeTable(result);
 
 				}).fail(function() {
