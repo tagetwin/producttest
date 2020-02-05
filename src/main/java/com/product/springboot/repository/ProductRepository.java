@@ -7,29 +7,18 @@ import com.product.springboot.model.Product;
 public interface ProductRepository {
 
 	// 전체검색
-		List<Product> findAll();
-		
-		// 주방
-		List<Product> findBy1(String type);
-		
-		// 음식
-		List<Product> findBy2(String type);
-		
-		// 가격순
-		List<Product> findByPrice();
-		
-		// 주문순
-		List<Product> findByOrder();
-		
-		// 주방 + 가격
-		List<Product> findBy1Price();
-		
-		// 주방 + 주문
-		List<Product> findBy1Order();
-		
-		// 음식 + 가격
-		List<Product> findBy2Price();
+	List<Product> findAll();
 
-		// 음식 + 주문
-		List<Product> findBy2Order();
+	// 주방 or 음식
+	List<Product> findByType(String type);
+	
+	// 주문 or 가격
+	List<Product> findBySort(String sort);
+
+	// 타입 + 주문
+	List<Product> findByOrderType(String type);
+
+	// 타입 + 가격
+	List<Product> findByPriceType(String type);
+
 }

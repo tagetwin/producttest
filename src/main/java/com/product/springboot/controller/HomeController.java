@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.product.springboot.model.Product;
@@ -34,67 +35,37 @@ public class HomeController {
 		return products;
 	}
 	
-	@GetMapping("/life")
-	public @ResponseBody List<Product> life_list() {
+	@GetMapping("/type/{type}")
+	public @ResponseBody List<Product> type_list(@PathVariable String type) {
 		
-		List<Product> products = prorep.findBy1("주방");
-		
-		return products;
-	}
-	
-	@GetMapping("/food")
-	public @ResponseBody List<Product> food_list() {
-		
-		List<Product> products = prorep.findBy1("음식");
-		
-		return products;
-	}
-	@GetMapping("/order")
-	public @ResponseBody List<Product> order_list() {
-		
-		List<Product> products = prorep.findByOrder();
-		
-		return products;
-	}
-	@GetMapping("/price")
-	public @ResponseBody List<Product> price_list() {
-		
-		List<Product> products = prorep.findByPrice();
+		List<Product> products = prorep.findByType(type);
 		
 		return products;
 	}
 	
-	@GetMapping("/life_price")
-	public @ResponseBody List<Product> life_price_list() {
+	@GetMapping("/sort/{sort}")
+	public @ResponseBody List<Product> order_list(@PathVariable String sort) {
 		
-		List<Product> products = prorep.findBy1Price();
-		
-		return products;
-	}
-	
-	@GetMapping("/life_order")
-	public @ResponseBody List<Product> life_order_list() {
-		
-		List<Product> products = prorep.findBy1Order();
+		List<Product> products = prorep.findBySort(sort);
 		
 		return products;
 	}
 	
+	
+	@GetMapping("/order/{type}")
+	public @ResponseBody List<Product> order_type_list(@PathVariable String type) {
+		
+		List<Product> products = prorep.findByOrderType(type);
+		
+		return products;
+	}
+	
+	@GetMapping("/price/{type}")
+	public @ResponseBody List<Product> price_type_list(@PathVariable String type) {
+		
+		List<Product> products = prorep.findByPriceType(type);
+		
+		return products;
+	}
 
-	@GetMapping("/food_price")
-	public @ResponseBody List<Product> food_price_list() {
-		
-		List<Product> products = prorep.findBy2Price();
-		
-		return products;
-	}
-	
-
-	@GetMapping("/food_order")
-	public @ResponseBody List<Product> food_order_list() {
-		
-		List<Product> products = prorep.findBy2Order();
-		
-		return products;
-	}
 }
